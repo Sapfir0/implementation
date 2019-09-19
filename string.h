@@ -18,7 +18,12 @@ class string : public object  {
         const char operator[](int pointer);
         string operator+=(string str);
         string operator+=(const char* character);
+        string operator()(int start, int end);  // почти что срез в питоне
         uint8_t size();
+        string append(const char character);
+        string append(string rightStr);
+        string operator+(string str);
+        string operator+(const char* str);
 
         friend std::ostream& operator<<(std::ostream& os, string str) {
             int counter = 0;
@@ -28,55 +33,9 @@ class string : public object  {
             return os;
         }
 
-        string append(const char character) {
-//            string newString = *new string;
-//            newString.data = data + character;
-//            return newString;
-        }
-
-        string append(string rightStr) {
-            string newString = *new string;
-            newString.length = this->length + rightStr.length;
-            newString.data = new char[newString.length];
-
-            for(int i=0; i<this->length; i++) {
-                newString.data[i] = this->data[i];
-            }
-
-            for(int i=this->length+1; i<newString.length; i++) {
-                newString.data[i] = rightStr.data[i];
-            }
-
-            return newString;
-        }
-
-
-
-        string operator()(int start, int end) {
-            for(int i=0; i<start;i++) {
-                *data++;
-            }
-            //char predicatedString[end-start];
-            string temp = "";
-            for(int i=start; i < end; i++) {
-                //predicatedString[i] = *data;
-                temp += *data;
-                *data++;
-            }
-            return (string)"2";
-        }
-
-
-
-
     private:
         char* data;
         uint32_t length;
-
-        string(uint8_t length) {
-            string* newString = (string*)malloc(sizeof(string));
-        }
-
 };
 
 
