@@ -2,6 +2,7 @@
 // Created by Sapfir on 17.09.2019.
 //
 
+#include <cstring>
 #include "string.h"
 
 string::string() {
@@ -42,27 +43,41 @@ string string::append(const char character) {
 }
 
 string string::append(string rightStr) {
-    string newString = *new string;
-    newString.length = length + rightStr.length;
-    newString.data = new char[newString.length];
+    char* backupData = data;
+    data = new char[length+rightStr.length];
 
     for(size_type i=0; i < length; i++) {
-        newString.data[i] = data[i];
+        data[i] = backupData[i];
     }
 
     for(size_type i=0; i < rightStr.length; i++) {
-        newString.data[length + i] = rightStr.data[i];
+        data[length+i] = rightStr.data[i];
     }
-    length = newString.length;
-    return newString;
+    length += rightStr.length;
+    return *this;
 }
+
+
 
 
 string string::operator()(int start, int end) {
 
 }
 
-string operator+(string str) {
+string string::operator+(string str) {
+    string newString;
+    newString.length = length + str.length;
+    newString.data = new char[newString.length];
 
+    for(size_type i=0; i < length; i++) {
+        newString.data[i] = data[i];
+    }
+
+    for(size_type i=0; i < str.length; i++) {
+        newString.data[length + i] = str.data[i];
+    }
+    return newString;
 }
+
+
 
