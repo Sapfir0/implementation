@@ -11,7 +11,7 @@
 #include "object.h"
 #include <iostream>
 
-using size_type uint32_t;
+using size_type = uint32_t;
 
 class string : public object  {
     public:
@@ -25,11 +25,10 @@ class string : public object  {
         string append(const char character);
         string append(string rightStr);
         string operator+(string str);
-        string operator+(const char* str);
 
         friend std::ostream& operator<<(std::ostream& os, string str) {
             int counter = 0;
-            for(int i=0; i< str.length; i++ ) {
+            for(size_type i=0; i < str.length; i++ ) {
                 os << str.data[i];
             }
             return os;
@@ -37,7 +36,7 @@ class string : public object  {
 
     private:
         char* data;
-        uint32_t length;
+        size_type length;
 };
 
 

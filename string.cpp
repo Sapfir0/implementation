@@ -10,7 +10,7 @@ string::string() {
 }
 
 string::string(const char* str)  {
-    data = str;
+    data = const_cast<char *>(str);
     length = strlen(str);
 }
 
@@ -46,11 +46,11 @@ string string::append(string rightStr) {
     newString.length = length + rightStr.length;
     newString.data = new char[newString.length];
 
-    for(int i=0; i < length; i++) {
+    for(size_type i=0; i < length; i++) {
         newString.data[i] = data[i];
     }
 
-    for(int i=0; i < rightStr.length; i++) {
+    for(size_type i=0; i < rightStr.length; i++) {
         newString.data[length + i] = rightStr.data[i];
     }
     length = newString.length;
@@ -59,23 +59,10 @@ string string::append(string rightStr) {
 
 
 string string::operator()(int start, int end) {
-    for(int i=0; i<start;i++) {
-        *data++;
-    }
-    //char predicatedString[end-start];
-    string temp = "";
-    for(int i=start; i < end; i++) {
-        //predicatedString[i] = *data;
-        temp += *data;
-        *data++;
-    }
-    return (string)"2";
+
 }
 
 string operator+(string str) {
 
 }
 
-string operator+(const char* str) {
-
-}
