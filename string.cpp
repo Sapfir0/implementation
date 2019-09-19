@@ -14,9 +14,9 @@ string::string(const char* str)  {
     length = strlen(str);
 }
 
-uint8_t string::size() {
+size_type string::size() {
     length = 0;
-    while(strcmp(data, "\0")) {
+    while( data != '\0') {
         length++;
         *data++;
     }

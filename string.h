@@ -11,6 +11,8 @@
 #include "object.h"
 #include <iostream>
 
+#define size_type uint32_t;
+
 class string : public object  {
     public:
         string();
@@ -19,7 +21,7 @@ class string : public object  {
         string operator+=(string str);
         string operator+=(const char* character);
         string operator()(int start, int end);  // почти что срез в питоне
-        uint8_t size();
+        size_type size();
         string append(const char character);
         string append(string rightStr);
         string operator+(string str);
