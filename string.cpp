@@ -34,13 +34,6 @@ string string::operator+=(string str) {
     return append(str);
 }
 
-string string::operator+=(const char* character) {
-
-}
-
-string string::append(const char character) {
-
-}
 
 string string::append(string rightStr) {
     char* backupData = data;
