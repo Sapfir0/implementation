@@ -11,7 +11,7 @@
 #include "object.h"
 #include <iostream>
 
-#define size_type uint32_t;
+using size_type uint32_t;
 
 class string : public object  {
     public:

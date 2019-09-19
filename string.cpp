@@ -15,11 +15,6 @@ string::string(const char* str)  {
 }
 
 size_type string::size() {
-    length = 0;
-    while( data != '\0') {
-        length++;
-        *data++;
-    }
     return length;
 }
 
@@ -48,17 +43,17 @@ string string::append(const char character) {
 
 string string::append(string rightStr) {
     string newString = *new string;
-    newString.length = this->length + rightStr.length;
+    newString.length = length + rightStr.length;
     newString.data = new char[newString.length];
 
-    for(int i=0; i < this->length; i++) {
-        newString.data[i] = this->data[i];
+    for(int i=0; i < length; i++) {
+        newString.data[i] = data[i];
     }
 
     for(int i=0; i < rightStr.length; i++) {
-        newString.data[this->length + i] = rightStr.data[i];
+        newString.data[length + i] = rightStr.data[i];
     }
-
+    length = newString.length;
     return newString;
 }
 
