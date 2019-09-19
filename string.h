@@ -36,8 +36,17 @@ class string : public object  {
 
         string append(string rightStr) {
             string newString = *new string;
-            const char* foo = data + rightStr.data
-            newString.data = foo;
+            newString.length = this->length + rightStr.length;
+            newString.data = new char[newString.length];
+
+            for(int i=0; i<this->length; i++) {
+                newString.data[i] = this->data[i];
+            }
+
+            for(int i=this->length+1; i<newString.length; i++) {
+                newString.data[i] = rightStr.data[i];
+            }
+
             return newString;
         }
 
@@ -61,8 +70,8 @@ class string : public object  {
 
 
     private:
-        const char* data;
-        uint8_t length;
+        char* data;
+        uint32_t length;
 
         string(uint8_t length) {
             string* newString = (string*)malloc(sizeof(string));
