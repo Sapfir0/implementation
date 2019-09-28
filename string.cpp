@@ -31,13 +31,14 @@ const char string::operator[](int pointer) {
 }
 
 string string::operator+=(string str) {
-    return append(str);
+    this->append(str);
+    return *this;
 }
 
 
-string string::append(string rightStr) {
+void string::append(string rightStr) {
     char* backupData = data;
-    data = new char[length+rightStr.length];
+    data = new char[length+rightStr.length+1];
 
     for(size_type i=0; i < length; i++) {
         data[i] = backupData[i];
@@ -47,28 +48,14 @@ string string::append(string rightStr) {
         data[length+i] = rightStr.data[i];
     }
     length += rightStr.length;
-    return *this;
+    data[length] = '\0';
 }
 
-
-
-
-string string::operator()(int start, int end) {
-
-}
 
 string string::operator+(string str) {
     string newString;
-    newString.length = length + str.length;
-    newString.data = new char[newString.length];
-
-    for(size_type i=0; i < length; i++) {
-        newString.data[i] = data[i];
-    }
-
-    for(size_type i=0; i < str.length; i++) {
-        newString.data[length + i] = str.data[i];
-    }
+    newString = *this;
+    newString += str;
     return newString;
 }
 

@@ -20,10 +20,9 @@ class string : public object  {
         const char operator[](int pointer);
         string operator+=(string str);
         string operator+=(const char* character);
-        string operator()(int start, int end);  // почти что срез в питоне
         size_type size();
         string append(const char character);
-        string append(string rightStr);
+        void append(string rightStr);
         string operator+(string str);
 
         friend std::ostream& operator<<(std::ostream& os, string str) {
